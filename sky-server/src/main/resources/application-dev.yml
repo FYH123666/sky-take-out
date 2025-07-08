@@ -9,7 +9,9 @@ sky:
 
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    access-key-id: ${ALIBABA_ACCESS_KEY}
+    access-key-id:
+#  ${ALIBABA_ACCESS_KEY}
 
-    access-key-secret: ${ALIBABA_SECRET_KEY}
+    access-key-secret:
+#  ${ALIBABA_SECRET_KEY}
     bucket-name: my-sky-take-out-fyh
