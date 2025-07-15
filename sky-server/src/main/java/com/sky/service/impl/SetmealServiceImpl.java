@@ -160,7 +160,6 @@ public class SetmealServiceImpl implements SetmealService {
         return list;
     }
 
-    @Override
     public List<DishItemVO> getDishItemById(Long id) {
         return setmealMapper.getDishItemBySetmealId(id);
     }
