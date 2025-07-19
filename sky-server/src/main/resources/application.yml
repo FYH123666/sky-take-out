@@ -62,3 +62,9 @@ sky:
   wechat:
     appid: ${sky.wechat.appid}
     secret: ${sky.wechat.secret}
+
+
+  shop:
+    address: 河南省许昌市鄢陵县
+  baidu:
+    ak: ${sky.baidu.ak}
