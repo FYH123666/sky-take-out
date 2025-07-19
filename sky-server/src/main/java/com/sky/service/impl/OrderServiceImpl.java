@@ -327,6 +327,19 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.update(orders);
     }
 
+
+    public void complete(Long id) {
+        Orders ordersDB = orderMapper.getById(id);
+        if(ordersDB==null||!ordersDB.getStatus().equals(Orders.DELIVERY_IN_PROGRESS))
+        {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+        }
+        Orders orders = new Orders();
+        orders.setId(orders.getId());
+        orders.setStatus(Orders.COMPLETED);
+        orderMapper.update(orders);
+    }
+
     private List<OrderVO> getOrderVOList(Page<Orders> page) {
         // 需要返回订单菜品信息，自定义OrderVO响应结果
         List<OrderVO> orderVOList = new ArrayList<>();
