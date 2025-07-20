@@ -59,7 +59,7 @@ public class OrderController {
      * 接单
      *
      */
-    @GetMapping("/confirm")
+    @PutMapping("/confirm")
     @ApiOperation("接单")
     public Result confirm(@RequestBody OrdersConfirmDTO ordersConfirmDTO)
     {
