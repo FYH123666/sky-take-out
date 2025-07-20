@@ -65,6 +65,6 @@ sky:
 
 
   shop:
-    address: 河南省许昌市鄢陵县
+    address: ${sky.shop.address}
   baidu:
     ak: ${sky.baidu.ak}

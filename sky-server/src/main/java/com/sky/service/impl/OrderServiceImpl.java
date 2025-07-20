@@ -336,7 +336,7 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
         }
         Orders orders = new Orders();
-        orders.setId(orders.getId());
+        orders.setId(ordersDB.getId());
         orders.setStatus(Orders.DELIVERY_IN_PROGRESS);
         orderMapper.update(orders);
     }
@@ -349,7 +349,7 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
         }
         Orders orders = new Orders();
-        orders.setId(orders.getId());
+        orders.setId(ordersDB.getId());
         orders.setStatus(Orders.COMPLETED);
         orderMapper.update(orders);
     }
@@ -527,6 +527,27 @@ public class OrderServiceImpl implements OrderService {
         map.put("orderId", ordersDB.getId());
         map.put("content","订单号:"+ outTradeNo);
         String json = JSON.toJSONString(map);
+        webSocketServer.sendToAllClient(json);
+    }
+
+
+    /**
+     * 订单催单
+     *
+     * @param id
+     */
+    public void reminder(Long id) {
+        //根据订单id查询订单
+        Orders ordersDB = orderMapper.getById(id);
+        if (ordersDB == null) {
+            throw new OrderBusinessException(MessageConstant.ORDER_NOT_FOUND);
+    }
+        Map map = new HashMap();
+        map.put("type", 2);//1：来单提醒 2：催单提醒
+        map.put("orderId", id);
+        map.put("content","订单号:"+ ordersDB.getNumber());
+        String json = JSON.toJSONString(map);
+        //通过WebSocket向客户端推送消息
         webSocketServer.sendToAllClient(json);
     }
 
