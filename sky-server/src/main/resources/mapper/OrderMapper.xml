@@ -70,10 +70,10 @@
         select sum(amount) from orders
         <where>
             <if test="begin != null">
-                and order_time &gt;= #{beginTime}
+                and order_time &gt;= #{begin}
             </if>
             <if test="end != null">
-                and order_time &lt;= #{endTime}
+                and order_time &lt;= #{end}
             </if>
         <if test="status != null">
             and status = #{status}
