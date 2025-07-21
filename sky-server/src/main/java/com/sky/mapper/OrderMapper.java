@@ -58,9 +58,17 @@ public interface OrderMapper {
     List<Orders> getByStatusAndOrderTimeLT(Integer pendingPayment, LocalDateTime time);
 
     /**
-     * 根据状态统计订单数量
+     * 根据状态统计营业额数据
      * @param map
      * @return
      */
     Double sumByMap(Map map);
+
+
+    /**
+     * 根据动态状态统计订单数量
+     * @param map
+     * @return
+     */
+    Integer countByMap(Map map);
 }
